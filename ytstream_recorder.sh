@@ -12,6 +12,8 @@ SLEEPSECS=60
 # You may need to change this if your locale is not English, not my problem
 NOT_LIVE_STR="This live event will begin in "
 
+FNAME="ytstream.mkv"
+
 DOTHING=1
 while [ $DOTHING -eq 1 ]; do
 	STR=""
@@ -31,6 +33,14 @@ while [ $DOTHING -eq 1 ]; do
 		else
 			DOTHING=0
 			echo "Using format $FORMAT"
+
+			NEW_NAME=$(yt-dlp --skip-download --print filename -o "%(channel)s - %(title)s [%(id)s]" $1)
+			if [ ! -z "${NEW_NAME}" ]; then
+				FNAME="$NEW_NAME.mkv"
+			else
+				DATE=$(date "+%Y-%m-%d_%H-%M-%S_")
+				FNAME="$DATE$FNAME"
+			fi
 			break
 		fi
 
@@ -41,7 +51,7 @@ while [ $DOTHING -eq 1 ]; do
 	fi
 done
 
-echo "link:""${STR}"
+echo "Output filename: $FNAME"
 echo "Downloading $1"
-ffmpeg -i "${STR}" -c copy -loglevel panic "$2"
+ffmpeg -i "${STR}" -c copy -loglevel panic "$FNAME"
 echo "Done"
