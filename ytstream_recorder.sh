@@ -43,5 +43,5 @@ done
 
 echo "link:""${STR}"
 echo "Downloading $1"
-ffmpeg -i "${STR}" -c copy -loglevel panic $2
+ffmpeg -i "${STR}" -c copy -loglevel panic "$2"
 echo "Done"
