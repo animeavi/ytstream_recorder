@@ -3,8 +3,8 @@
 # Original script
 # https://old.reddit.com/r/Hololive/comments/jjhiby/afk_archiving_an_unarchived_livestream_linux/gacz7o4/
 
-# Ordered by priority, in this case 1080p60, 1080p, 720p60, 720p, 480p
-FORMATS=(301 96 300 95 94)
+# Ordered by priority, in this case 1080p60, 1080p, 720p60, 720p, 480p, 360p, 240p, 144p
+FORMATS=(301 96 300 95 94 93 92 91)
 
 # Seconds before trying again
 SLEEPSECS=60
