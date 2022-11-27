@@ -51,6 +51,9 @@ while [ $DOTHING -eq 1 ]; do
 	fi
 done
 
+echo "Storing stream thumbnail and info..."
+yt-dlp --write-thumbnail --convert-thumbnails png --write-info-json --skip-download -o "%(channel)s - %(title)s [%(id)s].%(ext)s" $1
+
 echo "Output filename: $FNAME"
 echo "Downloading $1"
 ffmpeg -i "${STR}" -c copy -loglevel panic "$FNAME"
